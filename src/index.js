@@ -1,16 +1,23 @@
 import React from "react";
 
-interface State {
-  count: number;
-}
-interface Props {}
-
-export default class MyCounter extends React.Component<Props, State> {
+export default class MyCounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       count: 0,
     };
+
+    console.log("here");
+  }
+
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+    this.props.handler({ yo: "yo" });
+  }
+
+  decrement() {
+    this.setState({ count: this.state.count - 1 });
+    this.props.handler({ yo: "yo" });
   }
 
   render() {
@@ -28,21 +35,18 @@ export default class MyCounter extends React.Component<Props, State> {
           width: 4rem;
           height: 4rem;
           border: none;
-          border-radius: 10px;
-          background-color: seagreen;
+          border-radius: 5px;
+          background-color: steelblue;
           color: white;
         }`;
 
     return (
       <div className="my-counter">
         <style>{styles}</style>
-        <button onClick={() => this.setState({ count: this.state.count - 1 })}>
-          -
-        </button>
+        <button onClick={() => this.decrement()}>-</button>
         <span>{this.state.count}</span>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          +
-        </button>
+
+        <button onClick={() => this.increment()}>+</button>
       </div>
     );
   }

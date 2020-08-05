@@ -7,4 +7,8 @@ export default {
   },
 };
 
-export const story1 = () => <MyCounter></MyCounter>;
+function handler(ev) {
+  console.log(ev);
+}
+
+export const story1 = () => <MyCounter handler={handler}></MyCounter>;
